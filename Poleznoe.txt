@@ -1,0 +1,38 @@
+http://www.austintaylor.io/lxml/python/pandas/xml/dataframe/2016/07/08/convert-xml-to-pandas-dataframe/
+
+http://datareview.info/article/otbor-priznakov-dlya-mashinnogo-obucheniya-na-python/
+
+http://bazhenov.me/blog/2012/07/21/classification-performance-evaluation.html
+
+https://www.hse.ru/data/2015/04/30/1098219251/Стандарт%20разработки%20и%20комментирования%20ПО.pdf
+
+https://github.com/adeshpande3/Pandas-Tutorial/blob/master/Pandas%20Tutorial.ipynb
+
+
+
+cmap_light = ListedColormap(['#FFAAAA', '#AAFFAA', '#AAAAFF'])
+cmap_bold = ListedColormap(['#AA0000', '#00AA00', '#0000AA'])
+
+
+x_min, x_max = X_train[:, 0].min() - 1, X_train[:, 0].max() + 1
+y_min, y_max = X_train[:, 1].min() - 1, X_train[:, 1].max() + 1
+
+
+h = 0.02
+
+xx, yy = np.meshgrid(np.arange(x_min, x_max, h),
+            np.arange(y_min, y_max, h))
+
+pred = model.predict(np.c_[xx.ravel(), yy.ravel()])
+pred = pred.reshape(xx.shape)
+
+
+#plt.figure()
+plt.pcolormesh(xx, yy, pred, cmap=cmap_light)
+plt.scatter(X[:, 0], X[:, 1], 
+            c=y, cmap=cmap_bold)
+#plt.xlim(xx.min(), xx.max())
+#plt.ylim(yy.min(), yy.max())
+
+plt.title("Score: %.0f percents" % (model.score(X_test, y_test) * 100))
+plt.show()
