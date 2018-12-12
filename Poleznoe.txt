@@ -36,3 +36,19 @@ plt.scatter(X[:, 0], X[:, 1],
 
 plt.title("Score: %.0f percents" % (model.score(X_test, y_test) * 100))
 plt.show()
+
+
+
+
+
+from sklearn.ensemble import GradientBoostingRegressor
+from IPython.display import clear_output
+for i in range(1, 1000):
+    
+    model = GradientBoostingRegressor(learning_rate=0.2, n_estimators=i, max_depth=1).fit(x[:, None], y)
+    clear_output(True)
+    plt.plot(x, y, label='true')
+    plt.plot(x, model.predict(x[:, None]), label='model')
+    plt.legend()
+    plt.title('%i estimators' % i)
+    plt.show()
